@@ -7,7 +7,7 @@
     "type" : "git",
     "url"  : "https://github.com/lkwatson/strangerlights"
   },
-  "author"  : "Lucas Watson <lucaswtsn@gmail.com>",
+  "author"  : "Lucas Watson <contact@lucaskwatson.com>",
   "license" : "GNU GPL v3.0",
   "bugs"    : {
     "url"   : "https://github.com/lkwatson/strangerlights/issues"
@@ -16,6 +16,6 @@
     "express"         : "latest",
     "morgan"          : "latest",
     "body-parser"     : "latest",
-    "method-override" : "latest",
+    "method-override" : "latest"
   }
 }
