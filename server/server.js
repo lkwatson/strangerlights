@@ -7,14 +7,16 @@ var methodOverride  = require('method-override');
 var port            = 80;
 var app             = express();
 
+var config = require('./config');
+
 app.use(morgan(':date[clf] :method :status :url :remote-addr :response-time ms - :res[content-length]',{
 	skip: function (req, res) { return req.query.updateRequest === 'true' }
 }));
 
-app.use(bodyParser.json());                                     // Parse dat 
-app.use(bodyParser.urlencoded({extended: true}));               // Mmmmm URL parsing
-app.use(bodyParser.text());                                     // Aww yea look at some raw text 
-app.use(bodyParser.json({ type: 'application/vnd.api+json'}));  // parse application/vnd.api+json as json
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: 'application/vnd.api+json'}));
 app.use(methodOverride('X-HTTP-Method-Override'));
 
 require('./routes.js')(app); //add ",passport)" if needed

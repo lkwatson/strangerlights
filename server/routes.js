@@ -1,4 +1,5 @@
 var http = require("http");
+var config = require('./config');
 
 module.exports = function(app) {	
 	// Routes
@@ -8,7 +9,7 @@ module.exports = function(app) {
   });
   
   app.get('*', function(req, res) {
-	  res.send(404);
+	  res.sendStatus(404);
   });
 	
 }
