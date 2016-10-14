@@ -1,21 +1,23 @@
 {
-  "name"        : "StrangerLights",
-  "version"     : "0.0.1",
-  "description" : "Backend to StrangerLights.com, that takes messages from the public and allows permitted IoT devices to read messages and mark them as shown",
-  "main" : "server.js",
+  "name": "StrangerLights",
+  "version": "0.0.1",
+  "description": "Backend to StrangerLights.com, that takes messages from the public and allows permitted IoT devices to read messages and mark them as shown",
+  "main": "server.js",
   "repository": {
-    "type" : "git",
-    "url"  : "https://github.com/lkwatson/strangerlights"
+    "type": "git",
+    "url": "https://github.com/lkwatson/strangerlights"
   },
-  "author"  : "Lucas Watson <contact@lucaskwatson.com>",
-  "license" : "GNU GPL v3.0",
-  "bugs"    : {
-    "url"   : "https://github.com/lkwatson/strangerlights/issues"
+  "author": "Lucas Watson <contact@lucaskwatson.com>",
+  "license": "GNU GPL v3.0",
+  "bugs": {
+    "url": "https://github.com/lkwatson/strangerlights/issues"
   },
   "dependencies": {
-    "express"         : "latest",
-    "morgan"          : "latest",
-    "body-parser"     : "latest",
-    "method-override" : "latest"
+    "express": "latest",
+    "morgan": "latest",
+    "body-parser": "latest",
+    "method-override": "latest",
+    "express-rate-limit": "~2.5.0",
+    "mongoose": "~4.6.3"
   }
 }
