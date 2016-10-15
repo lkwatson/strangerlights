@@ -55,10 +55,38 @@
 	<meta property="og:locale" content="en_US">
 	
 </head>
-<body style="background-color:black; color:white;">
+<body style="background-color:black; color:white;" class="anim-fade_in1">
+
   <div class="anim-humming_1">
-    <img src="img/SLTitle.jpg" class="title-img anim-humming_2">
+    <img src="img/SLTitle.png" class="title-img anim-humming_2">
   </div>
   
+  <div class="mainpage-content">
+    
+    <noscript>Hey there, please make sure Javascript is enabled, it's needed for this site to work</noscript>
+    <p>Coming October 29th. Please ignore until then.</p>
+    
+    <form name="contact-upsidedown-form" id="contact-upsidedown-form">
+      <label>
+        Message:
+        <input type="text" name="message" id="contact-form-message"/>
+      </label>
+      <input type="submit" value="Submit">
+    </form>
+    
+    <div>
+      <table id="message-queue-table" style="width:100%">
+        <tr>
+          <th>Message</th>
+          <th>Status</th> 
+          <th>Date</th>
+        </tr>
+        <!-- JS populates this table -->
+      </table>
+    </div>
+    
+  </div>
+
+<script src="script.js"></script>
 </body>
 </html>

@@ -8,11 +8,41 @@
 //Sorted by page heiarchy 
 
 $break-sm: 700px;
+$break-md: 950px;
 $break-lg: 1200px;
 
 body {
   color: white; //default white text
+  background: url("img/bg.jpg");
+  background-repeat: no-repeat;
+  background-size: auto 200%;
+  background-position: 40% top;
 }
+
+.title-img {
+  width: 40vw;
+  margin-left: 30vw;
+  margin-bottom: 10vh;
+  @media (max-width: $break-sm) {
+    width: 80vw;
+    margin-left: 10vw;
+  }
+}
+
+.mainpage-content {
+  width: 50vw;
+  margin-left: 25vw;
+  @media (max-width: $break-md) {
+    width: 80vw;
+    margin-left: 10vw;
+  }
+  
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+
+//Animations
 
 .anim-humming_1 {
   opacity: 0.9;
@@ -24,13 +54,9 @@ body {
   animation: humming 0.55s infinite;
 }
 
-.title-img {
-  width: 40vw;
-  margin-left: 30vw;
-  @media (max-width: $break-sm) {
-    width: 80vw;
-    margin-left: 10vw;
-  } 
+.anim-fade_in1 {
+  opacity: 1;
+  animation: fadein 2s;
 }
 
 @keyframes humming  {
@@ -38,7 +64,7 @@ body {
 		opacity: 0.9;
 	}
 	4% {
-  	opacity: 0.85;
+  	opacity: 0.83;
 	}
 	8% {
 		opacity: 0.9;
@@ -48,9 +74,18 @@ body {
 		opacity: 0.9;
 	}
 	63% {
-		opacity: 0.95;
+		opacity: 0.97;
 	}
 	66% {
   	opacity: 0.9;
 	}
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
