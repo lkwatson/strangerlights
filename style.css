@@ -2,7 +2,7 @@ body {
   color: white;
   background: url("img/bg.jpg");
   background-repeat: no-repeat;
-  background-size: auto 200%;
+  background-size: auto 100%;
   background-position: 40% top; }
 
 .title-img {
@@ -23,6 +23,12 @@ body {
     .mainpage-content {
       width: 80vw;
       margin-left: 10vw; } }
+
+.tb-highlight-shown {
+  background-color: rgba(0, 116, 69, 0.5); }
+
+.tb-highlight-showing {
+  background-color: rgba(34, 0, 114, 0.5); }
 
 .anim-humming_1 {
   opacity: 0.9;

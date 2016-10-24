@@ -52,12 +52,27 @@ function getMessageQueue() {
 function populateMessageQueueTable(data) {
   var table = document.getElementById("message-queue-table");
   
+  //clear all rows except the top one
   for (var i = table.rows.length - 1; i > 0; i--) {
     table.deleteRow(i);
   }
   
   for (i = 0; i < data.length; i++) {
-    var newRow = table.insertRow(i+1);
+
+    switch (data[i].displayed) {
+    case 'true':
+      var classToAdd = 'tb-highlight-shown'
+      break;
+    case 'now':
+      var classToAdd = 'tb-highlight-showing'
+      break;
+    case 'false':
+      var classToAdd = 'tb-highlight-toshow'
+      break;
+    }
+    
+    var newRow = table.insertRow(i+1)
+    newRow.classList.add(classToAdd);
     var msgCell = newRow.insertCell(0);
     var stsCell = newRow.insertCell(1);
     var ageCell = newRow.insertCell(2);

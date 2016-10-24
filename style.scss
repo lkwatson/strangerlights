@@ -15,7 +15,7 @@ body {
   color: white; //default white text
   background: url("img/bg.jpg");
   background-repeat: no-repeat;
-  background-size: auto 200%;
+  background-size: auto 100%;
   background-position: 40% top;
 }
 
@@ -39,6 +39,15 @@ body {
   
   padding: 10px;
   background-color: rgba(0, 0, 0, 0.7);
+}
+
+//Table 
+
+.tb-highlight-shown {
+  background-color: rgba(0, 116, 69, 0.5);
+}
+.tb-highlight-showing {
+  background-color: rgba(34, 0, 114, 0.5);
 }
 
 
