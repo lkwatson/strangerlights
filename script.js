@@ -106,7 +106,7 @@ function testForNaughtyStuff(string) {
   //been shifted with a caesar cipher.
   
   var naughtyWords = ["kzhp", "kzh", "xmny", "yny", "hqnytwnx", "{flnsf", "snljw", "snlf", "ujsnx", "mtqthfzxy", "oj|", "ywzru", "mnqfw~", "hqnsyts", "gttgx", "fwxj", "gnyhm", "gfxyfwi", "gtsjw", "gzyy", "hthp", "htts", "hzr", "hzsy", "inqit", "jofhzqfyj", "kfl", "kflty", "kflty", "khzp", "kjqqfy", "kzp", "mtws~", "on", "on", "qfgnf", "rfxyjwgfyj", "rfxyjwgfynts", "twlfxr", "umzp", "unxx", "utws", "uzxx~", "wjyfwi", "xj}", "xjrjs", "xrjlrf", "{zq{f", "|fsp", "|mtwj", "mnyqjw", "sfn", "gtrg", "lzs", "snll", "mfwi"];
-  var naughtyWordsWRepeat = ["fxx","snlljw", "snllf","snll","ppp"];
+  var naughtyWordsWRepeat = ["fxx","snlljw", "snllf","snll","ppp","lf~"];
   //uncomment to create a new Caesar array
   /*
   newArray = []
@@ -114,7 +114,7 @@ function testForNaughtyStuff(string) {
     newArray[j] = caesar(naughtyWords[j],5);
   }
   */
-  //console.log(caesar("fuc",5))
+  //console.log(caesar("gay",5))
   
   stringWhole = string.toLowerCase().replace(/\s/g, '');
   string = string.toLowerCase().replace(/\s/g, '').replace(/(.)\1{1,}/g, '$1');
