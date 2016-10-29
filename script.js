@@ -24,6 +24,9 @@ contactForm.addEventListener("submit", function(f){
           console.log(req.response);
           getMessageQueue();
         }else{
+          if(req.status == 429) {
+            document.getElementById("message-user-error-limiter").style.display = "block";
+          }
           console.log(req.response);
         }
       }
@@ -155,6 +158,7 @@ contactInput.addEventListener('keyup', function(event) {
   document.getElementById("message-user-error-toolong").style.display = "none";
   document.getElementById("message-user-error-spaces").style.display = "none";
   document.getElementById("message-user-error-naughty").style.display = "none";
+  document.getElementById("message-user-error-limiter").style.display = "none";
   
   if (!contactInput.value.match(/[A-Za-z ]+$/)) {
     contactInput.value = contactInput.value.replace(/[^A-Za-z ]+$/g, '');
