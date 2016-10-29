@@ -9,7 +9,7 @@ contactForm.addEventListener("submit", function(f){
   
   if (message.match(/^\s+$/) || message.length == 0) { //if only spaces present, tell the user
     document.getElementById("message-user-error-spaces").style.display = "block";
-  }else if(message.length > 21) {
+  }else if(message.length > 25) {
     document.getElementById("message-user-error-toolong").style.display = "block";
   }else if(testForNaughtyStuff(message)) {
     document.getElementById("message-user-error-naughty").style.display = "block";
@@ -105,7 +105,7 @@ function testForNaughtyStuff(string) {
   //Note that for a variety of reasons, the naughty words in question have 
   //been shifted with a caesar cipher.
   
-  var naughtyWords = ["kzhp", "kzh", "xmny", "yny", "hqnytwnx", "{flnsf", "snljw", "snlf", "ujsnx", "mtqthfzxy", "oj|", "ywzru", "mnqfw~", "hqnsyts", "gttgx", "fwxj", "gnyhm", "gfxyfwi", "gtsjw", "gzyy", "hthp", "htts", "hzr", "hzsy", "inqit", "jofhzqfyj", "kfl", "kflty", "kflty", "khzp", "kjqqfy", "kzp", "mtws~", "on", "on", "qfgnf", "rfxyjwgfyj", "rfxyjwgfynts", "twlfxr", "umzp", "unxx", "utws", "uzxx~", "wjyfwi", "xj}", "xjrjs", "xrjlrf", "{zq{f", "|fsp", "|mtwj", "mnyqjw", "sfn", "gtrg", "lzs", "snll", "mfwi"];
+  var naughtyWords = ["kzhp", "kzh", "xmny", "yny", "hqnytwnx", "{flnsf", "snljw", "snlf", "ujsnx", "mtqthfzxy", "oj|", "ywzru", "mnqfw~", "hqnsyts", "gttgx", "fwxj", "gnyhm", "gfxyfwi", "gtsjw", "gzyy", "hthp", "htts", "hzr", "hzsy", "inqit", "jofhzqfyj", "kfl", "kflty", "kflty", "khzp", "kjqqfy", "kzp", "mtws~", "on", "on", "qfgnf", "rfxyjwgfyj", "rfxyjwgfynts", "twlfxr", "umzp", "unxx", "utws", "uzxx~", "wjyfwi", "xj}", "xjrjs", "xrjlrf", "{zq{f", "|fsp", "|mtwj", "mnyqjw", "sfn", "gtrg", "lzs", "snll", "mfwi", "inhp"];
   var naughtyWordsWRepeat = ["fxx","snlljw", "snllf","snll","ppp","lf~"];
   //uncomment to create a new Caesar array
   /*
@@ -114,7 +114,7 @@ function testForNaughtyStuff(string) {
     newArray[j] = caesar(naughtyWords[j],5);
   }
   */
-  //console.log(caesar("gay",5))
+  //console.log(caesar("testword",5))
   
   stringWhole = string.toLowerCase().replace(/\s/g, '');
   string = string.toLowerCase().replace(/\s/g, '').replace(/(.)\1{1,}/g, '$1');
