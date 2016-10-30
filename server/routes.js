@@ -69,7 +69,8 @@ module.exports = function(app) {
   
   //Post a message
   app.post('/willareyouthere', useLimiter, function(req, res){
-    var messageForTests = (req.body.message) ? req.body.message : " ";
+
+    var messageForTests = (req.body.message) ? req.body.message.replace(/[^A-Za-z ]+/g, '') : " ";
     
     if (messageForTests.match(/^\s+$/) || messageForTests.length == 0) { //if only spaces present
       res.sendStatus(400)
@@ -81,7 +82,7 @@ module.exports = function(app) {
     
       Message.create(
         {
-          'message'   : req.body.message,
+          'message'   : messageForTests,
           'ip'        : req.connection.remoteAddress,
           'dateSent'  : new Date(),
           'displayed' : 'false'
@@ -107,7 +108,7 @@ module.exports = function(app) {
     //Note that for a variety of reasons, the naughty words in question have 
     //been shifted with a caesar cipher.
     
-    var naughtyWords = ["kzhp", "kzh", "xmny", "yny", "hqnytwnx", "{flnsf", "snljw", "snlf", "ujsnx", "mtqthfzxy", "oj|", "ywzru", "mnqfw~", "hqnsyts", "gttgx", "fwxj", "gnyhm", "gfxyfwi", "gtsjw", "gzyy", "hthp", "htts", "hzr", "hzsy", "inqit", "jofhzqfyj", "kfl", "kflty", "kflty", "khzp", "kjqqfy", "kzp", "mtws~", "on", "on", "qfgnf", "rfxyjwgfyj", "rfxyjwgfynts", "twlfxr", "umzp", "unxx", "utws", "uzxx~", "wjyfwi", "xj}", "xjrjs", "xrjlrf", "{zq{f", "|fsp", "|mtwj", "mnyqjw", "sfn", "gtrg", "lzs", "snll", "mfwi", "inhp"];
+    var naughtyWords = ["kzhp", "kzh", "xmny", "yny", "hqnytwnx", "{flnsf", "snljw", "snlf", "ujsnx", "mtqthfzxy", "oj|", "ywzru", "mnqfw~", "hqnsyts", "gttgx", "fwxj", "gnyhm", "gfxyfwi", "gtsjw", "gzyy", "hthp", "htts", "hzr", "hzsy", "inqit", "jofhzqfyj", "kfl", "kflty", "kflty", "khzp", "kjqqfy", "kzp", "mtws~", "on", "on", "qfgnf", "rfxyjwgfyj", "rfxyjwgfynts", "twlfxr", "umzp", "unxx", "utws", "uzxx~", "wjyfwi", "xj}", "xjrjs", "xrjlrf", "{zq{f", "|fsp", "|mtwj", "mnyqjw", "sfn", "gtrg", "lzs", "snll", "mfwi", "inhp", "xzhp", "uwjlsfsy","hmtij","yzwsjw","khp","szy","fsfq","myqjw","myqw"];
     var naughtyWordsWRepeat = ["fxx","snlljw", "snllf","snll","ppp","lf~"];
     //uncomment to create a new Caesar array
     /*
