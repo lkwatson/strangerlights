@@ -22,6 +22,7 @@ contactForm.addEventListener("submit", function(f){
       if (req.readyState == 4) {
         if(req.status == 200) {
           console.log(req.response);
+          contactInput.value = "";
           getMessageQueue();
         }else{
           if(req.status == 429) {
