@@ -10,7 +10,7 @@ var rateLimit = require('express-rate-limit');
 
 var useLimiter = rateLimit({
   windowMs: 1*60*1000, // 1 minute
-  max: 100,              // 1 request per window  
+  max: 2,              // 1 request per window  
   delayMs: 100         // 100ms request delay
 });
 
@@ -69,24 +69,89 @@ module.exports = function(app) {
   
   //Post a message
   app.post('/willareyouthere', useLimiter, function(req, res){
+    var messageForTests = (req.body.message) ? req.body.message : " ";
     
-    Message.create(
-      {
-        'message'   : req.body.message,
-        'ip'        : req.connection.remoteAddress,
-        'dateSent'  : new Date(),
-        'displayed' : 'false'
-      },
-      function(err,doc) {
-        if (err) {
-          console.log(err);
-          res.sendStatus(500);
-        }  
-        res.sendStatus(200);
-      }
-    );
+    if (messageForTests.match(/^\s+$/) || messageForTests.length == 0) { //if only spaces present
+      res.sendStatus(400)
+    }else if(messageForTests.length > 25) {
+      res.sendStatus(400)
+    }else if(testForNaughtyStuff(messageForTests)) {
+      res.sendStatus(400)
+    }else{//if the message is okay, send it
+    
+      Message.create(
+        {
+          'message'   : req.body.message,
+          'ip'        : req.connection.remoteAddress,
+          'dateSent'  : new Date(),
+          'displayed' : 'false'
+        },
+        function(err,doc) {
+          if (err) {
+            console.log(err);
+            res.sendStatus(500);
+          }  
+          res.sendStatus(200);
+        }
+      );
+      
+    }
 		
   });
+  
+  function testForNaughtyStuff(string) {
+    //These are all naughty words that we don't want to be posted publically
+    //While this code can be circumvented, it's mainly intended for gracefully 
+    //telling the user to be more polite. This code is also active on the server side
+    
+    //Note that for a variety of reasons, the naughty words in question have 
+    //been shifted with a caesar cipher.
+    
+    var naughtyWords = ["kzhp", "kzh", "xmny", "yny", "hqnytwnx", "{flnsf", "snljw", "snlf", "ujsnx", "mtqthfzxy", "oj|", "ywzru", "mnqfw~", "hqnsyts", "gttgx", "fwxj", "gnyhm", "gfxyfwi", "gtsjw", "gzyy", "hthp", "htts", "hzr", "hzsy", "inqit", "jofhzqfyj", "kfl", "kflty", "kflty", "khzp", "kjqqfy", "kzp", "mtws~", "on", "on", "qfgnf", "rfxyjwgfyj", "rfxyjwgfynts", "twlfxr", "umzp", "unxx", "utws", "uzxx~", "wjyfwi", "xj}", "xjrjs", "xrjlrf", "{zq{f", "|fsp", "|mtwj", "mnyqjw", "sfn", "gtrg", "lzs", "snll", "mfwi", "inhp"];
+    var naughtyWordsWRepeat = ["fxx","snlljw", "snllf","snll","ppp","lf~"];
+    //uncomment to create a new Caesar array
+    /*
+    newArray = []
+    for(j = 0; j < naughtyWords.length; j++) {
+      newArray[j] = caesar(naughtyWords[j],5);
+    }
+    */
+    //console.log(caesar("testword",5))
+    
+    stringWhole = string.toLowerCase().replace(/\s/g, '');
+    string = string.toLowerCase().replace(/\s/g, '').replace(/(.)\1{1,}/g, '$1');
+    console.log(string);
+    
+    for(j = 0; j < naughtyWords.length; j++) {
+      var wordToTest = caesar(naughtyWords[j],-5);
+      
+      if(string.indexOf(wordToTest) >= 0) {
+
+        return true;
+        break;
+      }
+    }
+    for(k = 0; k < naughtyWordsWRepeat.length; k++) {
+      var wordToTest = caesar(naughtyWordsWRepeat[k],-5);
+      
+      if(stringWhole.indexOf(wordToTest) >= 0) {
+
+        return true;
+        break;
+      }
+    }
+    
+    return false;
+  }
+  
+  function caesar(str,shift) {
+    result = '';
+    for (i = 0; i < str.length; i++) {
+      ccode = (str[i].charCodeAt()) + shift;
+      result += String.fromCharCode(ccode);
+    }
+    return result;
+  }
   
   app.get('/iot/getmessage', function(req,res){
     
@@ -126,13 +191,44 @@ module.exports = function(app) {
               return charcode
             } 
           });
-                
+          
+          lowercaseMessage = lowercaseMessage.replace(/[a-z]/g, function (m) {
+            return {
+              'a': 'w',
+              'b': 'v',
+              'c': 'm',
+              'd': 'l',
+              'e': 'e',
+              'f': 'd',
+              'g': 'x',
+              'h': 'u',
+              'i': 'n',
+              'j': 'k',
+              'k': 'f',
+              'l': 'c',
+              'm': 'y',
+              'n': 't',
+              'o': 'o',
+              'p': 'p',
+              'q': 'j',
+              'r': 'g',
+              's': 'b',
+              't': 'z',
+              'u': 's',
+              'v': 'r',
+              'w': 'q',
+              'x': 'i',
+              'y': 'h',
+              'z': 'a',
+            }[m];
+          });
+                        
           console.log("Send string light code: ",lowercaseMessage);
           
           res.send(lowercaseMessage);
         }else{
           //a default of "IM HERE" [ 8, 12, 26, 7, 4, 17, 4 ]
-          res.send("abacaddbca")
+          res.send("+") //triggers "theater chase"
         }
         
       });
