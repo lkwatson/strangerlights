@@ -193,6 +193,10 @@ module.exports = function(app) {
             } 
           });
           
+          //Since the lights are not strung in alphabetical order, we can't just say
+          //A = light0. So this 'translates' the message into the light string order
+          //This is done here, because it would be harder and more resource intensive
+          //if done on the IoT device
           lowercaseMessage = lowercaseMessage.replace(/[a-z]/g, function (m) {
             return {
               'a': 'w',
@@ -229,7 +233,7 @@ module.exports = function(app) {
           res.send(lowercaseMessage);
         }else{
           //a default of "IM HERE" [ 8, 12, 26, 7, 4, 17, 4 ]
-          res.send("+") //triggers "theater chase"
+          res.send("+") //triggers standby lights
         }
         
       });
