@@ -1,3 +1,13 @@
+/************************
+ * Stranger Lights Server. Strangerlights.com
+ * 
+ * A halloween IoT project. Aphabet light board that displays messages from a server.
+ * 
+ * Copyright 2016 Lucas Watson
+ * 
+ * Released under GPL-3.0
+************************/
+
 var http = require('http');
 var config = require('./config');
 var mongoose = require('mongoose');
