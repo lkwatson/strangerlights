@@ -1,6 +1,6 @@
 {
   "name": "StrangerLights",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Backend to StrangerLights.com, that takes messages from the public and allows permitted IoT devices to read messages and mark them as shown",
   "main": "server.js",
   "repository": {

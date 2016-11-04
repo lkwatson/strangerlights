@@ -1,3 +1,13 @@
+/************************
+ * Stranger Lights Frontend JS. Strangerlights.com
+ * 
+ * A halloween IoT project. Aphabet light board that displays messages from a server.
+ * 
+ * Copyright 2016 Lucas Watson
+ * 
+ * Released under GPL-3.0
+************************/
+
 var contactForm = document.getElementById("contact-upsidedown-form");
 var contactInput = document.getElementById("contact-form-message");
 
