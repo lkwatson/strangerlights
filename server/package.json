@@ -18,6 +18,6 @@
     "body-parser": "latest",
     "method-override": "latest",
     "express-rate-limit": "~2.5.0",
-    "mongoose": "~4.7.5"
+    "mongoose": "~5.8.11"
   }
 }
